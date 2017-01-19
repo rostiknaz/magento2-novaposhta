@@ -1,0 +1,23 @@
+{
+    "name": "rostiknaz/magento2-novaposhta",
+    "description": "Ukrainian shipping method",
+    "type": "magento2-module",
+    "version": "dev-master",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Rostiknaz\\NovaPoshta\\": ""
+        }
+    },
+    "require": {
+        "magento/magento-composer-installer": "*",
+        "php": "~5.5.0|~5.6.0|~7.0.0"
+    },
+    "authors":[
+        {
+            "name": "Rostyslav Nazymko"
+        }
+    ]
+}
