@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <carriers>
+            <novaposhta>
+                <!-- отключен по-умолчанию, чтобы не предлагать недоконфигурированный метод доставки пользователю -->
+                <active>0</active>
+                <!-- флаг, ограничивать ли метод доставки по стране, которая указана в shipping address при оформлении заказа -->
+                <sallowspecific>0</sallowspecific>
+                <!-- класс модели перевозчика -->
+                <model>Rostiknaz\NovaPoshta\Model\Carrier\NovaPoshta</model>
+                <!-- название перевозчика -->
+                <title>Новая Почта</title>
+                <!-- сообщение об ошибке -->
+                <specificerrmsg>Этот способ доставки на текущий момент не доступен. Если вы желаете, чтобы мы доставили заказ Новой Почтой, обратитесь к менеджеру интернет-магазина.</specificerrmsg>
+            </novaposhta>
+        </carriers>
+    </default>
+</config>
