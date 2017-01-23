@@ -21,7 +21,6 @@ class NovaPoshta extends \Magento\Shipping\Model\Carrier\AbstractCarrier
     protected $_code = 'novaposhta';
 
     //после подключения синхронизации с API эти свойства будут удалены
-    protected $_shippingPrice = 10.00;
     protected $_werehouseId = 1;
     protected $_werehouseName = 'Склад №1';
 

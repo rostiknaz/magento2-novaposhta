@@ -13,6 +13,8 @@
                 <title>Новая Почта</title>
                 <!-- сообщение об ошибке -->
                 <specificerrmsg>Этот способ доставки на текущий момент не доступен. Если вы желаете, чтобы мы доставили заказ Новой Почтой, обратитесь к менеджеру интернет-магазина.</specificerrmsg>
+                <api_url>http://orders.novaposhta.ua/xml.php</api_url>
+                <enable_log>0</enable_log>
             </novaposhta>
         </carriers>
     </default>
