@@ -1,9 +1,10 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: naro
- * Date: 1/19/17
- * Time: 2:55 PM
+ * Model for shipping method 'NovaPoshta'.
+ *
+ * @category   Rostiknaz
+ * @package    Rostiknaz_NovaPoshta
+ * @author     Nazymko Rostyslav
  */
 
 namespace Rostiknaz\NovaPoshta\Model\Carrier;
@@ -76,7 +77,7 @@ class NovaPoshta extends \Magento\Shipping\Model\Carrier\AbstractCarrier
         /** @var \Magento\Quote\Model\Quote\Address\RateResult\Method $method */
         $method = $this->_rateMethodFactory->create();
 
-        $shippingPrice = 10.00; // dummy price
+        $shippingPrice = $this->_getDeliveryPriceByWeight($request->getPackageWeight()); 
         $warehouseId = 1; // dummy warehouse ID
         $warehouseName = 'Склад №1'; // dummy warehouse name
 
@@ -89,9 +90,6 @@ class NovaPoshta extends \Magento\Shipping\Model\Carrier\AbstractCarrier
 
         /*you can fetch shipping price from different sources over some APIs, we used price from config.xml - xml node price*/
 //        $amount = $this->getConfigData('price');
-
-//        $method->setPrice($shippingPrice);
-//        $method->setCost($shippingPrice);
 
         $result->append($method);
 
@@ -107,4 +105,42 @@ class NovaPoshta extends \Magento\Shipping\Model\Carrier\AbstractCarrier
     {
         return true;
     }
+
+    /**
+     * @return array
+     */
+    protected function _getWeightPriceMap()
+    {
+        $weightPriceMap = $this->getConfigData('weight_price');
+        if (empty($weightPriceMap)) {
+            return array();
+        }
+
+        return unserialize($weightPriceMap);
+    }
+
+    /**
+     * @param $packageWeight
+     *
+     * @return float
+     */
+    protected function _getDeliveryPriceByWeight($packageWeight)
+    {
+        $weightPriceMap = $this->_getWeightPriceMap();
+        $resultingPrice = 0.00;
+        if (empty($weightPriceMap)) {
+            return $resultingPrice;
+        }
+
+        $minimumWeight = 100;
+        foreach ($weightPriceMap as $weightPrice) {
+            if ($packageWeight <= $weightPrice['weight'] && $weightPrice['weight'] <= $minimumWeight) {
+                $minimumWeight = $weightPrice['weight'];
+                $resultingPrice = $weightPrice['price'];
+            }
+        }
+
+        return $resultingPrice;
+    }
+
 }

@@ -46,6 +46,11 @@
                 <field id="specificerrmsg" translate="label" type="textarea" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Displayed Error Message</label>
                 </field>
+                <field id="weight_price" translate="label" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Shipping price</label>
+                    <frontend_model>Rostiknaz\NovaPoshta\Block\Adminhtml\System\Config\Field\WeightPrice</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
             </group>
         </section>
     </system>
